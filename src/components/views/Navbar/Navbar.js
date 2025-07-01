@@ -21,6 +21,11 @@ function NavbarComponent() {
               <Nav.Link as={NavLink} to='/'>
                 Home
               </Nav.Link>
+
+              <Nav.Link as={NavLink} to='/post/add'>
+                Add Post
+              </Nav.Link>
+
               <Nav.Link as={NavLink} to='/about'>
                 About
               </Nav.Link>
