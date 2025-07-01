@@ -1,14 +1,32 @@
 import { useSelector } from 'react-redux';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { getPost } from '../../../redux/postsRedux';
-import { useParams, NavLink } from 'react-router-dom';
-import PostCard from '../../common/PostCard/PostCard';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import ConfirmModal from '../../common/Modal/Modal';
 
 function Post() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const post = useSelector(({ posts }) => getPost({ posts }, id));
+  const [showModal, setShowModal] = useState(false);
 
-  console.log(post);
+  const handleDelete = () => {
+    setShowModal(true);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirm = () => {
+    setShowModal(false);
+
+    console.log('remove this post');
+
+    // Navigate to home page
+    navigate('/');
+  };
 
   return (
     <Container>
@@ -35,10 +53,20 @@ function Post() {
             >
               Edit
             </Button>
-            <Button variant='outline-danger'>Delete</Button>
+            <Button variant='outline-danger' onClick={handleDelete}>
+              Delete
+            </Button>
           </div>
         </Col>
       </Row>
+
+      <ConfirmModal
+        show={showModal}
+        onHide={handleCancel}
+        onConfirm={handleConfirm}
+        title='Are you sure?'
+        message={`This operation will completely remove this post from the app. Are you sure you want to do that?`}
+      />
     </Container>
   );
 }
