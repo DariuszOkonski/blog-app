@@ -2,6 +2,8 @@ const postsReducer = (statePart = [], action) => {
   switch (action.type) {
     case REMOVE_POST:
       return statePart.filter((post) => post.id !== action.payload);
+    case ADD_POST:
+      return [...statePart, { ...action.payload, id: crypto.randomUUID() }];
     default:
       return statePart;
   }
@@ -13,10 +15,13 @@ export default postsReducer;
 export const getAllPosts = (state) => state.posts;
 export const getPost = ({ posts }, postId) =>
   posts.find((post) => post.id === postId);
+export const getPostsQuantity = (state) => state.posts.length;
 
 // actions
 const createActionName = (actionName) => `app/lists/${actionName}`;
-const REMOVE_POST = createActionName('ADD_LIST');
+const REMOVE_POST = createActionName('REMOVE_POST');
+const ADD_POST = createActionName('ADD_POST');
 
 // actions creators
 export const removePost = (payload) => ({ type: REMOVE_POST, payload });
+export const addPost = (payload) => ({ type: ADD_POST, payload });
