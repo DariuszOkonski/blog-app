@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getAllPosts } from '../../../redux/postsRedux';
-import PostCard from '../../common/Card/Card';
+import PostCard from '../../common/PostCard/PostCard';
 import SectionHeader from '../../common/SectionHeader/SectionHeader';
 
 const Home = () => {
