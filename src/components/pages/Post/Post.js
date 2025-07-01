@@ -1,14 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { getPost } from '../../../redux/postsRedux';
+import { getPost, removePost } from '../../../redux/postsRedux';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ConfirmModal from '../../common/Modal/Modal';
+import NotFound from '../NotFound/NotFound';
 
 function Post() {
+  const dispatch = useDispatch();
   const { id } = useParams();
+
   const navigate = useNavigate();
   const post = useSelector(({ posts }) => getPost({ posts }, id));
+
+  console.log(post);
+
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = () => {
@@ -21,12 +27,13 @@ function Post() {
 
   const handleConfirm = () => {
     setShowModal(false);
-
-    console.log('remove this post');
-
-    // Navigate to home page
+    dispatch(removePost(id));
     navigate('/');
   };
+
+  if (!post) {
+    return <NotFound />;
+  }
 
   return (
     <Container>
