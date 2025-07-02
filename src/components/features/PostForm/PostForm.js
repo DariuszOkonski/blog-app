@@ -30,9 +30,6 @@ function PostForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     action(formData);
-    // dispatch(addPost(formData));
-
-    // navigate('/');
   };
 
   return (
