@@ -1,7 +1,9 @@
+import SectionHeader from '../../common/SectionHeader/SectionHeader';
+
 function EditPost() {
   return (
     <div>
-      <h1>Edit Post</h1>
+      <SectionHeader text='Edit Post' />
     </div>
   );
 }
