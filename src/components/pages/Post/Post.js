@@ -13,8 +13,6 @@ function Post() {
   const navigate = useNavigate();
   const post = useSelector(({ posts }) => getPost({ posts }, id));
 
-  console.log(post);
-
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = () => {
@@ -40,13 +38,17 @@ function Post() {
       <Row className='px-5'>
         <Col md={6}>
           <h4 className='text-dark text-sm-start mb-3'>{post.title}</h4>
-          <small className='text-muted'>
-            <strong>Author: </strong> {post.author}
-          </small>
-          <small className='text-muted'>
-            <strong>Published: </strong>
-            {post.publishedDate}
-          </small>
+          <div>
+            <small className='text-muted'>
+              <strong>Author: </strong> {post.author}
+            </small>
+          </div>
+          <div>
+            <small className='text-muted'>
+              <strong>Published: </strong>
+              {post.publishedDate}
+            </small>
+          </div>
           <p className='text-muted flex-grow-1'>
             <small>{post.shortDescription}</small>
           </p>
