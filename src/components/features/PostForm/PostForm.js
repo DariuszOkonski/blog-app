@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
+import styles from './PostForm.module.scss';
 
 function PostForm({
   action,
@@ -18,6 +21,13 @@ function PostForm({
     shortDescription: shortDescription ?? '',
     content: content ?? '',
   });
+
+  const handleQuillInputChange = (inputData) => {
+    setFormData((prev) => ({
+      ...prev,
+      content: inputData,
+    }));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -87,18 +97,15 @@ function PostForm({
 
           <Form.Group className='mb-4'>
             <Form.Label>Main Content</Form.Label>
-            <Form.Control
-              as='textarea'
-              rows={8}
-              name='content'
+            <ReactQuill
+              className={styles.contentForm}
+              theme='snow'
               value={formData.content}
-              onChange={handleInputChange}
-              placeholder='Write your main content here'
-              required
+              onChange={handleQuillInputChange}
             />
           </Form.Group>
 
-          <div className='d-flex justify-content-start'>
+          <div className='d-flex justify-content-start mt-5'>
             <Button variant='primary' type='submit' size='lg'>
               {actionText}
             </Button>
