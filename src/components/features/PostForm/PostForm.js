@@ -78,7 +78,7 @@ function PostForm({
               value={formData.title}
               onChange={handleInputChange}
               placeholder='Enter post title'
-              required
+              // required
             />
           </Form.Group>
 
@@ -90,26 +90,28 @@ function PostForm({
               value={formData.author}
               onChange={handleInputChange}
               placeholder='Enter author name'
-              required
+              // required
             />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Published Date</Form.Label>
-            {/* <Form.Control
-              type='text'
-              name='publishedDate'
-              value={formData.publishedDate}
-              onChange={handleInputChange}
-              placeholder='Enter published date (e.g., 01-07-2025)'
-              required
-            /> */}
-            <div>
+            <div className='position-relative'>
               <DatePicker
                 selected={formData.publishedDate}
-                // selected={formData.publishedDate}
                 onChange={(date) => handleDatePickerInputChange(date)}
+                className='form-control'
+                placeholderText='Select published date'
+                dateFormat='dd/MM/yyyy'
+                showPopperArrow={false}
+                autoComplete='off'
+                wrapperClassName='w-100'
+                calendarClassName='shadow'
               />
+              <i
+                className='bi bi-calendar3 position-absolute top-50 end-0 translate-middle-y me-3 text-muted'
+                style={{ pointerEvents: 'none' }}
+              ></i>
             </div>
           </Form.Group>
 
@@ -122,7 +124,7 @@ function PostForm({
               value={formData.shortDescription}
               onChange={handleInputChange}
               placeholder='Enter a brief description of your post'
-              required
+              // required
             />
           </Form.Group>
 
