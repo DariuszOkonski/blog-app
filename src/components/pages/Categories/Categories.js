@@ -9,7 +9,7 @@ function Categories() {
 
   return (
     <Container className='my-5'>
-      <SectionHeader text='Categories' />
+      <SectionHeader text='All categories' />
       <Row>
         {categories.map((category) => (
           <Col key={category} xs={12} className='mb-1'>
