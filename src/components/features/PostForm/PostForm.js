@@ -7,6 +7,8 @@ import styles from './PostForm.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import { getAllCategories } from '../../../redux/categoriesRedux';
+import { useSelector } from 'react-redux';
 
 function PostForm({
   action,
@@ -26,6 +28,9 @@ function PostForm({
   });
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+
+  const categories = useSelector(getAllCategories);
+  console.log(categories);
 
   const {
     register,
