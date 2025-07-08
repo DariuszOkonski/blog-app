@@ -7,7 +7,7 @@ export const initialState = {
         'Learn the fundamentals of React Hooks and how they can simplify your components...',
       content:
         'React Hooks revolutionized the way we write React components. In this comprehensive guide, we will explore useState, useEffect, and other essential hooks that every React developer should master.',
-      publishedDate: '15-06-2025',
+      publishedDate: '06/15/2025',
       author: 'Sarah Johnson',
     },
     {
@@ -17,7 +17,7 @@ export const initialState = {
         'Discover the new features and improvements in Bootstrap 5 for responsive design...',
       content:
         'Bootstrap 5 brings exciting new features including custom CSS properties, improved grid system, and enhanced form controls. Learn how to create beautiful, responsive websites with ease.',
-      publishedDate: '22-06-2025',
+      publishedDate: '06/22/2025',
       author: 'Mike Chen',
     },
     {
@@ -27,7 +27,7 @@ export const initialState = {
         'Explore modern JavaScript features that will make your code cleaner and more efficient...',
       content:
         'Modern JavaScript offers powerful features like arrow functions, destructuring, template literals, and async/await. Master these concepts to write more elegant and maintainable code.',
-      publishedDate: '28-06-2025',
+      publishedDate: '06/28/2025',
       author: 'Emily Rodriguez',
     },
     {
@@ -37,7 +37,7 @@ export const initialState = {
         'Master CSS Grid to create complex, responsive layouts with minimal code...',
       content:
         'CSS Grid is a powerful layout system that makes it easy to design complex responsive layouts. Learn the grid properties, positioning techniques, and best practices for modern web design.',
-      publishedDate: '01-07-2025',
+      publishedDate: '07/01/2025',
       author: 'David Park',
     },
   ],

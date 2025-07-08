@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import styles from './PostForm.module.scss';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function PostForm({
   action,
@@ -17,15 +19,31 @@ function PostForm({
   const [formData, setFormData] = useState({
     title: title ?? '',
     author: author ?? '',
-    publishedDate: publishedDate ?? '',
+    publishedDate: new Date(),
     shortDescription: shortDescription ?? '',
     content: content ?? '',
   });
+
+  useEffect(() => {
+    if (publishedDate) {
+      setFormData((prev) => ({
+        ...prev,
+        publishedDate: new Date(publishedDate),
+      }));
+    }
+  }, [publishedDate]);
 
   const handleQuillInputChange = (inputData) => {
     setFormData((prev) => ({
       ...prev,
       content: inputData,
+    }));
+  };
+
+  const handleDatePickerInputChange = (date) => {
+    setFormData((prev) => ({
+      ...prev,
+      publishedDate: date,
     }));
   };
 
@@ -39,7 +57,13 @@ function PostForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    action(formData);
+
+    const newDate = {
+      ...formData,
+      publishedDate: formData.publishedDate.toLocaleDateString(),
+    };
+
+    action(newDate);
   };
 
   return (
@@ -72,14 +96,21 @@ function PostForm({
 
           <Form.Group className='mb-3'>
             <Form.Label>Published Date</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               type='text'
               name='publishedDate'
               value={formData.publishedDate}
               onChange={handleInputChange}
               placeholder='Enter published date (e.g., 01-07-2025)'
               required
-            />
+            /> */}
+            <div>
+              <DatePicker
+                selected={formData.publishedDate}
+                // selected={formData.publishedDate}
+                onChange={(date) => handleDatePickerInputChange(date)}
+              />
+            </div>
           </Form.Group>
 
           <Form.Group className='mb-3'>

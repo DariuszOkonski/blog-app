@@ -11,6 +11,7 @@
     "http-server": "^14.1.1",
     "react": "^19.1.0",
     "react-bootstrap": "2.8.0",
+    "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",
     "react-quill-new": "^3.4.6",
     "react-redux": "8.1.2",
