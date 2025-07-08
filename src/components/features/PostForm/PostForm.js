@@ -6,6 +6,7 @@ import 'react-quill-new/dist/quill.snow.css';
 import styles from './PostForm.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useForm } from 'react-hook-form';
 
 function PostForm({
   action,
@@ -23,6 +24,12 @@ function PostForm({
     shortDescription: shortDescription ?? '',
     content: content ?? '',
   });
+
+  const {
+    register,
+    handleSubmit: validate,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (publishedDate) {
@@ -55,9 +62,7 @@ function PostForm({
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = () => {
     const newDate = {
       ...formData,
       publishedDate: formData.publishedDate.toLocaleDateString(),
@@ -69,29 +74,51 @@ function PostForm({
   return (
     <Row className='justify-content-center'>
       <Col lg={8} md={10}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={validate(handleSubmit)}>
           <Form.Group className='mb-3'>
             <Form.Label>Title</Form.Label>
             <Form.Control
+              {...register('title', {
+                required: 'This field is required',
+                minLength: {
+                  value: 4,
+                  message: 'Title must be longer than 3 letters',
+                },
+              })}
               type='text'
               name='title'
               value={formData.title}
               onChange={handleInputChange}
               placeholder='Enter post title'
-              // required
             />
+            {errors.title && (
+              <span className='d-block form-text text-danger mt-2'>
+                {errors.title.message}
+              </span>
+            )}
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Author</Form.Label>
             <Form.Control
+              {...register('author', {
+                required: 'This field is required',
+                minLength: {
+                  value: 4,
+                  message: 'Author name must be longer than 3 letters',
+                },
+              })}
               type='text'
               name='author'
               value={formData.author}
               onChange={handleInputChange}
               placeholder='Enter author name'
-              // required
             />
+            {errors.author && (
+              <span className='d-block form-text text-danger mt-2'>
+                {errors.author.message}
+              </span>
+            )}
           </Form.Group>
 
           <Form.Group className='mb-3'>
@@ -118,14 +145,25 @@ function PostForm({
           <Form.Group className='mb-3'>
             <Form.Label>Short Description</Form.Label>
             <Form.Control
+              {...register('shortDescription', {
+                required: 'This field is required',
+                minLength: {
+                  value: 20,
+                  message: 'Short description must have at least 20 characters',
+                },
+              })}
               as='textarea'
               rows={3}
               name='shortDescription'
               value={formData.shortDescription}
               onChange={handleInputChange}
               placeholder='Enter a brief description of your post'
-              // required
             />
+            {errors.shortDescription && (
+              <span className='d-block form-text text-danger mt-2'>
+                {errors.shortDescription.message}
+              </span>
+            )}
           </Form.Group>
 
           <Form.Group className='mb-4'>
