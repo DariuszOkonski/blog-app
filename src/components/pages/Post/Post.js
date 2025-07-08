@@ -49,6 +49,12 @@ function Post() {
               {post.publishedDate}
             </small>
           </div>
+          <div>
+            <small className='text-muted'>
+              <strong>Category: </strong>
+              {post.category}
+            </small>
+          </div>
           <p className='text-muted flex-grow-1'>
             <small>{post.shortDescription}</small>
           </p>

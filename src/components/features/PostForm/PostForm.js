@@ -15,6 +15,7 @@ function PostForm({
   actionText,
   title,
   author,
+  category,
   publishedDate,
   shortDescription,
   content,
@@ -23,6 +24,7 @@ function PostForm({
     title: title ?? '',
     author: author ?? '',
     publishedDate: new Date(),
+    category: category ?? 'Sport',
     shortDescription: shortDescription ?? '',
     content: content ?? '',
   });
@@ -30,7 +32,6 @@ function PostForm({
   const [dateError, setDateError] = useState(false);
 
   const categories = useSelector(getAllCategories);
-  console.log(categories);
 
   const {
     register,
@@ -163,6 +164,22 @@ function PostForm({
                 </span>
               )}
             </div>
+          </Form.Group>
+
+          <Form.Group className='mb-3'>
+            <Form.Label>Category</Form.Label>
+            <Form.Control
+              as='select'
+              name='category'
+              value={formData.category}
+              onChange={handleInputChange}
+            >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </Form.Control>
           </Form.Group>
 
           <Form.Group className='mb-3'>
