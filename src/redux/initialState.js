@@ -25,7 +25,7 @@ export const initialState = {
     },
     {
       id: '3',
-      category: 'Movies',
+      category: 'Sport',
       title: 'JavaScript ES6+ Features You Should Know',
       shortDescription:
         'Explore modern JavaScript features that will make your code cleaner and more efficient...',

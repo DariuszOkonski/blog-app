@@ -19,6 +19,10 @@ export const getAllPosts = (state) => state.posts;
 export const getPost = ({ posts }, postId) =>
   posts.find((post) => post.id === postId);
 export const getPostsQuantity = (state) => state.posts.length;
+export const getPostsByCategory = ({ posts }, category) =>
+  posts.filter(
+    (post) => post.category.toLowerCase() === category.toLowerCase()
+  );
 
 // actions
 const createActionName = (actionName) => `app/lists/${actionName}`;
