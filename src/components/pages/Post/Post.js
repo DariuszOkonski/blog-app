@@ -52,6 +52,10 @@ function Post() {
           <p className='text-muted flex-grow-1'>
             <small>{post.shortDescription}</small>
           </p>
+          <div
+            className='text-muted flex-grow-1'
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </Col>
         <Col md={6}>
           <div className='d-flex gap-2 justify-content-end'>
