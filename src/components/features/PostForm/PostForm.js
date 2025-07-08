@@ -24,6 +24,8 @@ function PostForm({
     shortDescription: shortDescription ?? '',
     content: content ?? '',
   });
+  const [contentError, setContentError] = useState(false);
+  const [dateError, setDateError] = useState(false);
 
   const {
     register,
@@ -63,12 +65,23 @@ function PostForm({
   };
 
   const handleSubmit = () => {
-    const newDate = {
+    setDateError(false);
+    setContentError(false);
+
+    if (!formData.content || !formData.publishedDate) {
+      setDateError(true);
+      setContentError(true);
+      return;
+    }
+
+    const postData = {
       ...formData,
       publishedDate: formData.publishedDate.toLocaleDateString(),
     };
 
-    action(newDate);
+    if (formData.content && formData.publishedDate) {
+      action(postData);
+    }
   };
 
   return (
@@ -139,6 +152,11 @@ function PostForm({
                 className='bi bi-calendar3 position-absolute top-50 end-0 translate-middle-y me-3 text-muted'
                 style={{ pointerEvents: 'none' }}
               ></i>
+              {dateError && (
+                <span className='d-block form-text text-danger mt-2'>
+                  Select date
+                </span>
+              )}
             </div>
           </Form.Group>
 
@@ -174,6 +192,11 @@ function PostForm({
               value={formData.content}
               onChange={handleQuillInputChange}
             />
+            {contentError && (
+              <span className='d-block form-text text-danger mt-2'>
+                Fill in content field
+              </span>
+            )}
           </Form.Group>
 
           <div className='d-flex justify-content-start mt-5'>
