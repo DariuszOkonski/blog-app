@@ -2,6 +2,7 @@ export const initialState = {
   posts: [
     {
       id: '1',
+      category: 'Sport',
       title: 'Getting Started with React Hooks',
       shortDescription:
         'Learn the fundamentals of React Hooks and how they can simplify your components...',
@@ -12,6 +13,7 @@ export const initialState = {
     },
     {
       id: '2',
+      category: 'News',
       title: 'Bootstrap 5: Modern Web Design',
       shortDescription:
         'Discover the new features and improvements in Bootstrap 5 for responsive design...',
@@ -22,6 +24,7 @@ export const initialState = {
     },
     {
       id: '3',
+      category: 'Movies',
       title: 'JavaScript ES6+ Features You Should Know',
       shortDescription:
         'Explore modern JavaScript features that will make your code cleaner and more efficient...',
@@ -32,6 +35,7 @@ export const initialState = {
     },
     {
       id: '4',
+      category: 'Sport',
       title: 'Building Responsive Layouts with CSS Grid',
       shortDescription:
         'Master CSS Grid to create complex, responsive layouts with minimal code...',
